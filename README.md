@@ -1,2 +1,2 @@
-# Pygame-Car-Racer
-Make a racing game in Python using pygame!
+# Pygame-Racing-Simulator
+Make a racing simulator in Python using pygame and letting NEAT learn how to win the race!
