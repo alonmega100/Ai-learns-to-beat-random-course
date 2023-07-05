@@ -19,6 +19,24 @@ def blit_rotate_center(win, image, top_left, angle):
     win.blit(rotated_image, new_rect.topleft)
 
 
+def intersection(line1, line2):
+    xdiff = (line1[0][0] - line1[1][0], line2[0][0] - line2[1][0])
+    ydiff = (line1[0][1] - line1[1][1], line2[0][1] - line2[1][1])
+    div = det(xdiff, ydiff)
+    if div == 0:
+        return None
+    d = (det(*line1), det(*line2))
+    x = det(d, xdiff) / div
+    y = det(d, ydiff) / div
+    if min(line1[0][0], line1[1][0]) <= x <= max(line1[0][0], line1[1][0]) and min(line1[0][1], line1[1][1]) <= y <= max(line1[0][1], line1[1][1]) and min(line2[0][0], line2[1][0]) <= x <= max(line2[0][0], line2[1][0]) and min(line2[0][1], line2[1][1]) <= y <= max(line2[0][1], line2[1][1]):
+        return x, y
+    return None
+
+
+def det(a, b):
+    return a[0] * b[1] - a[1] * b[0]
+
+
 def draw_sensors(win, img, top_left, angle):
     sensors_coordinates = []
     center = img.get_rect(topleft=top_left).center
@@ -28,36 +46,22 @@ def draw_sensors(win, img, top_left, angle):
     radians = math.radians(angle)
     x, y = center
     sensor_length = 50
-    sensor_length_multiplaier = 2
-    pygame.draw.line(win, "white", center, (x + sensor_length_multiplaier * sensor_length * math.sin(radians), y + sensor_length_multiplaier * sensor_length * math.cos(radians)))
-    sensors_coordinates.append((center, (x + sensor_length_multiplaier * sensor_length * math.sin(radians), y + sensor_length_multiplaier * sensor_length * math.cos(radians))))
-    # sensors_coordinates.append((x + 1000 * math.sin(radians), y + 1000 * math.cos(radians)))
+    sensor_length_multiplier = 2
+    sensor_x = round(x + sensor_length_multiplier * sensor_length * math.sin(radians))
+    sensor_y = round(y + sensor_length_multiplier * sensor_length * math.cos(radians))
+    coordinates = sensor_x, sensor_y
+    pygame.draw.line(win, "white", center, coordinates)
+    sensors_coordinates.append((center, coordinates))
+    sensor_length_multiplier = 2
+
     radians -= math.pi / 4
     for i in range(7):
-        pygame.draw.line(win, "white", center, (x + sensor_length*math.sin(radians), y + sensor_length*math.cos(radians)))
-        sensors_coordinates.append((center,(x + sensor_length * math.sin(radians), y + sensor_length * math.cos(radians))))
-        # sensors_coordinates.append()
+        sensor_x = round(x + sensor_length_multiplier * sensor_length * math.sin(radians))
+        sensor_y = round(y + sensor_length_multiplier * sensor_length * math.cos(radians))
+        coordinates = sensor_x, sensor_y
+        pygame.draw.line(win, "white", center, coordinates)
+        sensors_coordinates.append((center, coordinates))
         radians -= math.pi/4
     return sensors_coordinates
 
-
-def crossover(_nn1, _nn2, _ratio, _repetitions, bias=False):
-    if _ratio == 0:
-        nnn = (2 * np.random.rand(len(_nn1), len(_nn1[0])) - 1)
-        return nnn
-
-    mutation_rate = 0.1
-    nnn = np.zeros((len(_nn1), len(_nn1[0])))
-    for y in range(len(_nn1[0])):
-        for x in range(len(_nn1)):
-            if _repetitions >= 5:
-                print("MUTATION RATE IS 0.6")
-                mutation_rate = 0.6
-            mutation = np.random.uniform((-1)*mutation_rate, mutation_rate)
-            nnn[x][y] = _ratio*_nn1[x][y] + (1-_ratio) * (_nn2[x][y]) + mutation
-            if not -2 <= nnn[x][y] <= 2 and not bias:
-                nnn[x][y] = min(nnn[x][y], 2)
-                nnn[x][y] = max(nnn[x][y], -2)
-
-    return nnn
 

@@ -3,11 +3,11 @@ from utils import *
 
 TRACK_LINES = []
 
-
+FRAMES_PER_BONUS_LINE = 40
 BONUS_LINES = []
 STARTING_POSITION = (0, 0)
 MAX_VEL = 7
-ROTATION_VEL = 10
+ROTATION_VEL = 15
 RED_CAR = scale_image(pygame.image.load("imgs/red-car.png"), 0.3)
 
 

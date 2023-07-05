@@ -25,22 +25,45 @@ class AbstractCar:
         self.points_sensor = []
 
     def rotate(self, _left=False, _right=False):
+        """
+        Rotates the car
+        :param _left:
+        :param _right:
+        :return:
+        """
         if _left:
             self.angle += self.rotation_vel
         elif _right:
             self.angle -= self.rotation_vel
 
     def draw(self, _win):
+        """
+        Draws the car and its sensors. Used by the draw function.
+        :param _win:
+        :return:
+        """
         blit_rotate_center(_win, self.img, (self.x, self.y), self.angle)
         self.sensors = draw_sensors(_win, self.img, (self.x, self.y), self.angle)
 
     def move_forward(self):
+        """
+        Updates the vel of the car.
+        :return:
+        """
         self.vel = min(self.vel + self.acceleration, self.max_vel)
 
     def move_backward(self):
+        """
+        Updates the vel of the car.
+        :return:
+        """
         self.vel = max(self.vel - self.acceleration*0.5, 0)
 
     def move(self):
+        """
+        Updates the location of the car. Called every frame.
+        :return:
+        """
         radians = math.radians(self.angle)
         vertical = math.cos(radians) * self.vel
         horizontal = math.sin(radians) * self.vel
@@ -49,6 +72,10 @@ class AbstractCar:
         self.x -= horizontal
 
     def collide(self):
+        """
+        Checks if the car hits a track line.
+        :return:
+        """
         car_rect = self.img.get_rect(x=self.x, y=self.y)
         for line in settings.TRACK_LINES:
             if car_rect.clipline(line):
@@ -56,61 +83,28 @@ class AbstractCar:
         return False
 
     def sense(self):
+        """
+        Checks the distances between the sensors and the surrounding walls.
+        :return: The distances sensed and updates the points sensed.
+        """
         points = []
         distances = []
         self.sensors = [self.sensors[0], self.sensors[1], self.sensors[2], self.sensors[-1], self.sensors[-2]]
         for sensor in self.sensors:
-            sensed_point = None
-            shortest_point = None
+            point_coordinate = None
+            shortest_dist = None
             for track_line in settings.TRACK_LINES:
-
-                (x1, y1), (x2, y2) = track_line
-                (x3, y3), (x4, y4) = sensor
-                x1 = int(round(x1))
-                x2 = int(round(x2))
-                x3 = int(round(x3))
-                x4 = int(round(x4))
-                y1 = int(round(y1))
-                y2 = int(round(y2))
-                y3 = int(round(y3))
-                y4 = int(round(y4))
-                if (max(x1, x2) < min(x3, x4)) or (min(x1, x2) > max(x3, x4)) \
-                        or (max(y1, y2) < min(y3, y4)) or (min(y1, y2) > max(y3, y4)):
-                    pass
-                else:
-                    if x1 == x2 and x3 == x4:
-                        pass
-
-                    elif x1 == x2:
-
-                        y = int(((y4 - y3) / (x4 - x3)) * (x1 - x3) + y3)
-                        if min(y1, y2) <= y <= max(y1, y2):
-                            dist = math.sqrt((x1 - x3) ** 2 + (y - y3) ** 2)
-                            if shortest_point is None or shortest_point > dist:
-                                shortest_point = dist
-                                sensed_point = ((255, 255, 0), (x1, y), 5)
-                    elif x3 == x4:
-                        y = int(((y2 - y1) / (x2 - x1)) * (x3 - x1) + y1)
-                        if min(y3, y4) <= y <= max(y3, y4):
-                            dist = math.sqrt((x3 - x3) ** 2 + (y3 - y) ** 2)
-                            if shortest_point is None or shortest_point > dist:
-                                shortest_point = dist
-                                sensed_point = ((255, 0, 0), (x3, y), 5)
-                    else:
-                        b1 = ((y2 - y1) / (x2 - x1))
-                        b2 = ((y4 - y3) / (x4 - x3))
-                        if b1 != b2:
-                            x = ((b2 * x3 - b1 * x1 + y1 - y3) / (b2 - b1))
-                            y = (y1 + b1 * (x - x1))
-                            if min(y3, y4) <= y <= max(y3, y4) and min(x3, x4) <= x <= max(x3, x4) \
-                                    and min(x1, x2) <= x <= max(x1, x2):
-                                dist = math.sqrt((x - x3) ** 2 + (y - y3) ** 2)
-                                if shortest_point is None or shortest_point > dist:
-                                    shortest_point = dist
-                                    sensed_point = ((0, 255, 0), (x, y), 5)
-            if sensed_point is not None and shortest_point is not None:
-                points.append(sensed_point)
-                distances.append(shortest_point)
+                temp = intersection(sensor, track_line)
+                if temp is not None:
+                    x1, y1 = sensor[0]
+                    x2, y2 = temp
+                    dist = math.sqrt((x1 - x2)**2 + (y1 - y2)**2)
+                    if shortest_dist is None or dist < shortest_dist:
+                        shortest_dist = dist
+                        point_coordinate = temp
+            if point_coordinate is not None and shortest_dist is not None:
+                points.append(((255, 0, 0), point_coordinate, 5))
+                distances.append(shortest_dist)
             else:
                 points.append(None)
                 distances.append(400)
@@ -119,6 +113,9 @@ class AbstractCar:
         return distances
 
     def get_distance_from_next_bonus_line(self):
+        """
+        :return: The distances from the next bonus line
+        """
         point_a, point_b = self.next_bonus_line
         point_a_x, point_a_y = point_a
         point_b_x, point_b_y = point_b
@@ -127,6 +124,10 @@ class AbstractCar:
         return dist_from_a, dist_from_b
 
     def update_input_layer(self):
+        """
+        Updates the input layer attribute of the car for NEAT.
+        :return:
+        """
         input_layer = self.sense()
         input_layer.append(self.vel)
         distances_from_next_bonus_line = self.get_distance_from_next_bonus_line()
@@ -134,18 +135,15 @@ class AbstractCar:
         input_layer+=[*distances_from_next_bonus_line]
         self.input_layer = input_layer
 
-    def reset(self):
-        self.x, self.y = settings.STARTING_POSITION
-        self.angle = 0
-        self.vel = 0
-        self.index_of_bonus_line = 0
-        self.next_bonus_line = settings.BONUS_LINES[0]
-        self.score = 0
-
     def print_input_layer(self):
         print("input layer:", self.input_layer)
 
     def take_action(self, output_layer):
+        """
+        Decides what action to take based on the NEAT feed forward function.
+        :param output_layer: NEATs output
+        :return: Nothing.
+        """
         decided_action = np.argmax(output_layer)
         if decided_action == 0:
             self.move_forward()

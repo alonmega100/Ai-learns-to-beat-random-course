@@ -14,6 +14,12 @@ import create_road
 
 
 def draw(_win, _player_cars):
+    """
+    Draws the boarder, cars, sensors and bonus line
+    :param _win: the window (pygame object)
+    :param _player_cars: the cars to be drawn
+    :return:  nothing
+    """
     _win.fill("black")
     i = 0
 
@@ -37,7 +43,7 @@ def draw(_win, _player_cars):
 
     for track_line in settings.TRACK_LINES:
         i += 1
-        pygame.draw.line(_win, (max(0, 255), 200, min(255,0)), *track_line)
+        pygame.draw.line(_win, (255,255,255), *track_line)
 
     for __car in _player_cars:
         __car.draw(_win)
@@ -45,6 +51,12 @@ def draw(_win, _player_cars):
 
 
 def main(genomes, config):
+    """
+    The main function NEAT is running
+    :param genomes: The objects of the cars in NEAT form
+    :param config: the configuration file named "config-feedforward.txt"
+    :return: nothing
+    """
 
     nets = []
     ge = []
@@ -84,7 +96,7 @@ def main(genomes, config):
             runs += 1
             for x, car in enumerate(cars):
 
-                ge[x].fitness -= 1
+                ge[x].fitness -= 10
 
                 car.update_input_layer()
                 output = nets[x].activate(car.input_layer)
@@ -92,10 +104,12 @@ def main(genomes, config):
                 car.move()
                 for point in car.points_sensor:
                     if point is not None:
-                        pygame.draw.circle(win, *point)
+                        color, center, radius = point
+                        center_x, center_y = center
+                        pygame.draw.circle(win, color, (int(center_x), int(center_y)), radius)
                 pygame.display.update()
-                if car.collide() or runs >= 100 + 40 * car.index_of_bonus_line +\
-                        18 * car.rounds_completed * len(settings.BONUS_LINES):
+                if car.collide() or runs >= 100 + settings.FRAMES_PER_BONUS_LINE * car.index_of_bonus_line +\
+                        settings.FRAMES_PER_BONUS_LINE * car.rounds_completed * len(settings.BONUS_LINES):
 
                     ge[x].fitness -= 5000
 
@@ -120,6 +134,11 @@ def main(genomes, config):
 
 
 def run(_config_path):
+    """
+    For NEAT. Runs the NEAT algorithm and logs the progres.
+    :param _config_path: The path of the config file
+    :return: Nothing
+    """
     config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction, neat.DefaultSpeciesSet
                                 , neat.DefaultStagnation, _config_path)
     p = neat.Population(config)

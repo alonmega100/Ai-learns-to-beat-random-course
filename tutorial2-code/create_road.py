@@ -23,7 +23,7 @@ def create_path():
                 current_point = tuple(map(sum, zip(current_point, (-1, 0))))
             case 3:  # Right
                 current_point = tuple(map(sum, zip(current_point, (1, 0))))
-        if len(log) >= 100:
+        if len(log) >= 60:
             # print("RESET", log)
             log = []
             current_point = starting_point
