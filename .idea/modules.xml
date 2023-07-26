@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Pygame-Car-Racer.iml" filepath="$PROJECT_DIR$/.idea/Pygame-Car-Racer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ReinforcementLearningWithNEAT.iml" filepath="$PROJECT_DIR$/.idea/ReinforcementLearningWithNEAT.iml" />
     </modules>
   </component>
 </project>

@@ -5,10 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ccd8a5e-5417-4c4d-89b4-01f63c11db39" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Pygame-Car-Racer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ReinforcementLearningWithNEAT.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tutorial2-code/AbstractCar.py" beforeDir="false" afterPath="$PROJECT_DIR$/tutorial2-code/AbstractCar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tutorial2-code/config-feedforward.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tutorial2-code/config-feedforward.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tutorial2-code/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tutorial2-code/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/AbstractCar.py" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/AbstractCar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/config-feedforward.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/config-feedforward.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/create_road.py" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/create_road.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/imgs/finish.png" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/imgs/finish.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/imgs/grass.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/imgs/grass.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/imgs/green-car.png" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/imgs/green-car.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/imgs/grey-car.png" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/imgs/grey-car.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/imgs/purple-car.png" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/imgs/purple-car.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/imgs/red-car.png" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/imgs/red-car.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/imgs/track-border.png" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/imgs/track-border.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/imgs/track.png" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/imgs/track.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/imgs/white-car.png" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/imgs/white-car.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/model.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/model.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial2-code/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,30 +57,9 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.main (1)">
-    <configuration name="AbstractCar" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Pygame-Car-Racer" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tutorial2-code" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tutorial2-code/AbstractCar.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.main">
     <configuration name="create_road" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Pygame-Car-Racer" />
+      <module name="ReinforcementLearningWithNEAT" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -85,7 +80,7 @@
       <method v="2" />
     </configuration>
     <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Pygame-Car-Racer" />
+      <module name="ReinforcementLearningWithNEAT" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -105,8 +100,29 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ReinforcementLearningWithNEAT" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CODE" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CODE/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="settings" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Pygame-Car-Racer" />
+      <module name="ReinforcementLearningWithNEAT" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -127,7 +143,7 @@
       <method v="2" />
     </configuration>
     <configuration name="utils" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Pygame-Car-Racer" />
+      <module name="ReinforcementLearningWithNEAT" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -149,11 +165,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.utils" />
         <item itemvalue="Python.create_road" />
         <item itemvalue="Python.settings" />
-        <item itemvalue="Python.AbstractCar" />
       </list>
     </recent_temporary>
   </component>
