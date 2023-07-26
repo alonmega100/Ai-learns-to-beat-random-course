@@ -54,14 +54,14 @@ def draw_sensors(win, img, top_left, angle):
     sensors_coordinates.append((center, coordinates))
     sensor_length_multiplier = 2
 
-    radians -= math.pi / 4
-    for i in range(7):
+    radians -= math.pi / 8
+    for i in range(15):
         sensor_x = round(x + sensor_length_multiplier * sensor_length * math.sin(radians))
         sensor_y = round(y + sensor_length_multiplier * sensor_length * math.cos(radians))
         coordinates = sensor_x, sensor_y
         pygame.draw.line(win, "white", center, coordinates)
         sensors_coordinates.append((center, coordinates))
-        radians -= math.pi/4
+        radians -= math.pi/8
     return sensors_coordinates
 
 

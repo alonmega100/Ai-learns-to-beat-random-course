@@ -89,7 +89,7 @@ class AbstractCar:
         """
         points = []
         distances = []
-        self.sensors = [self.sensors[0], self.sensors[1], self.sensors[2], self.sensors[-1], self.sensors[-2]]
+        self.sensors = [self.sensors[0], self.sensors[1], self.sensors[2], self.sensors[3], self.sensors[-1], self.sensors[-2], self.sensors[-3]]
         for sensor in self.sensors:
             point_coordinate = None
             shortest_dist = None
